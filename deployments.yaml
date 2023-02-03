@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foliage-inventory-app
+  namespace: foliage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foliage-inventory-app
+  template:
+    metadata:
+      labels:
+        app: foliage-inventory-app
+    spec:
+      containers:
+      - name: foliage-inventory-app
+        image: "ghcr.io/foliagecp/inventory-app:v0.1.0"
+        imagePullPolicy: Always
+        env:
+         - name: KAFKA_ADDR
+           value: kafka-cluster-kafka-brokers:9092
+         - name: CMDB_ADDR
+           value: "foliage-cmdb"
+         - name: CMDB_PORT
+           value: "31415"
+        ports:
+        - containerPort: 31000

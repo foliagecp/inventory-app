@@ -1,3 +1,4 @@
+// Copyright 2023 NJWS Inc.
 // Copyright 2022 Listware
 
 package agent
@@ -11,8 +12,6 @@ import (
 )
 
 const (
-	namespace = "proxy"
-
 	netlinkMask = "*[?@._type == 'netlink'?]"
 	memMask     = "*[?@._type == 'memory-device'?]"
 )
@@ -39,7 +38,7 @@ type Request struct {
 
 func prepareFunc(id string, r Request) (fc *pbtypes.FunctionContext, err error) {
 	ft := &pbtypes.FunctionType{
-		Namespace: namespace,
+		Namespace: types.Namespace,
 		Type:      types.FunctionPath,
 	}
 

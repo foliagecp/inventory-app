@@ -1,9 +1,11 @@
+// Copyright 2023 NJWS Inc.
 // Copyright 2022 Listware
 
 package agent
 
 import (
 	"context"
+	systemos "os"
 	"strings"
 
 	"git.fg-tech.ru/listware/go-core/pkg/executor"
@@ -16,7 +18,6 @@ import (
 	"git.fg-tech.ru/listware/inventory-app/pkg/agent/types/netlink"
 	"git.fg-tech.ru/listware/inventory-app/pkg/agent/types/node"
 	"git.fg-tech.ru/listware/inventory-app/pkg/agent/types/os"
-	proxy "git.fg-tech.ru/listware/proxy/pkg/module"
 	"github.com/sirupsen/logrus"
 )
 
@@ -48,7 +49,9 @@ func Run() (err error) {
 	a := &Agent{}
 	a.ctx, a.cancel = context.WithCancel(context.Background())
 
-	if a.executor, err = executor.New(); err != nil {
+	kafkaAddr := systemos.Getenv("KAFKA_ADDR")
+
+	if a.executor, err = executor.New(kafkaAddr); err != nil {
 		return
 	}
 
@@ -134,9 +137,11 @@ func (a *Agent) run() (err error) {
 
 	a.osSignalCtrl()
 
-	a.m = proxy.New(namespace, module.WithPort(8181))
+	a.m = module.New(types.Namespace, module.WithPort(31000))
 
-	if err = a.m.Bind(types.FunctionPath, a.workerFunction); err != nil {
+	log.Infof("use port (%d)", a.m.Port())
+
+	if err = a.m.Bind(types.FunctionType, a.workerFunction); err != nil {
 		return
 	}
 
@@ -145,13 +150,23 @@ func (a *Agent) run() (err error) {
 	// 	return
 	// }
 
-	go a.m.RegisterAndListen(a.ctx)
+	ctx, cancel := context.WithCancel(a.ctx)
+
+	go func() {
+		defer cancel()
+
+		if err = a.m.RegisterAndListen(ctx); err != nil {
+			log.Error(err)
+			return
+		}
+
+	}()
 
 	if err = a.entrypoint(); err != nil {
 		return
 	}
 
-	<-a.ctx.Done()
+	<-ctx.Done()
 
-	return nil
+	return
 }
