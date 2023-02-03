@@ -1,10 +1,10 @@
+// Copyright 2023 NJWS Inc.
 // Copyright 2022 Listware
 
 package bootstrap
 
 import (
 	"context"
-	"fmt"
 
 	"git.fg-tech.ru/listware/go-core/pkg/client/system"
 	"git.fg-tech.ru/listware/go-core/pkg/executor"
@@ -25,10 +25,11 @@ func register(ctx context.Context, exec executor.Executor) (err error) {
 		return
 	}
 
+	// example of trigger between types, not used in inventory
 	// create links
-	if err = createLinks(ctx); err != nil {
-		return
-	}
+	// if err = createLinks(ctx); err != nil {
+	// 	return
+	// }
 
 	message, err := system.Register(appName, registerTypes, registerObjects, registerLinks)
 	if err != nil {
@@ -48,7 +49,6 @@ func Run() (err error) {
 	defer exec.Close()
 
 	if err = register(ctx, exec); err != nil {
-		fmt.Println("register: ", err)
 		return
 	}
 

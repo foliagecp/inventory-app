@@ -1,4 +1,15 @@
+// Copyright 2023 NJWS Inc.
+// Copyright 2022 Listware
+
 package types
+
+const (
+	Namespace = "proxy.foliage"
+
+	// FunctionType will be as default qdsl to function
+	FunctionType = FunctionPath
+	Description  = "inventory init function"
+)
 
 const (
 	NodeID              = "types/node"

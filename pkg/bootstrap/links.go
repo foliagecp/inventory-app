@@ -1,3 +1,4 @@
+// Copyright 2023 NJWS Inc.
 // Copyright 2022 Listware
 
 package bootstrap
@@ -19,7 +20,7 @@ var (
 	createTrigger = &pbcmdb.Trigger{
 		Type: "create",
 		FunctionType: &pbtypes.FunctionType{
-			Namespace: "proxy",
+			Namespace: types.Namespace,
 			Type:      types.FunctionPath,
 		},
 	}
@@ -27,7 +28,7 @@ var (
 	updateTrigger = &pbcmdb.Trigger{
 		Type: "update",
 		FunctionType: &pbtypes.FunctionType{
-			Namespace: "proxy",
+			Namespace: types.Namespace,
 			Type:      types.FunctionPath,
 		},
 	}

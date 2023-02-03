@@ -1,3 +1,4 @@
+// Copyright 2023 NJWS Inc.
 // Copyright 2022 Listware
 
 package agent
@@ -33,7 +34,9 @@ func (a *Agent) createLink(route *pbtypes.FunctionRoute) (err error) {
 
 func (a *Agent) entrypoint() (err error) {
 	route := &pbtypes.FunctionRoute{
-		Url: a.m.Addr(),
+		Url:             a.m.Addr(),
+		ExecuteOnCreate: true,
+		ExecuteOnUpdate: true,
 	}
 
 	// exists node or create
@@ -65,7 +68,7 @@ func (a *Agent) entrypoint() (err error) {
 	}
 
 	message := &pbtypes.FunctionMessage{
-		Type:  types.FunctionPath,
+		// FunctionType: ,
 		Route: route,
 	}
 
