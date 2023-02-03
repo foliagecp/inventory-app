@@ -2,11 +2,16 @@ module git.fg-tech.ru/listware/inventory-app
 
 go 1.19
 
+replace git.fg-tech.ru/listware/proto => github.com/foliagecp/proto v0.1.0
+
+replace git.fg-tech.ru/listware/cmdb => github.com/foliagecp/cmdb v0.1.2
+
+replace git.fg-tech.ru/listware/go-core => github.com/foliagecp/go-core v0.1.2
+
 require (
-	git.fg-tech.ru/listware/cmdb v0.1.0
-	git.fg-tech.ru/listware/go-core v0.1.0
+	git.fg-tech.ru/listware/cmdb v0.1.2
+	git.fg-tech.ru/listware/go-core v0.1.2
 	git.fg-tech.ru/listware/proto v0.1.1
-	git.fg-tech.ru/listware/proxy v0.1.0
 	github.com/shirou/gopsutil v3.21.11+incompatible
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
