@@ -1,3 +1,4 @@
+// Copyright 2023 NJWS Inc.
 // Copyright 2022 Listware
 
 package mem
@@ -38,11 +39,13 @@ func Inventory() (devs map[string]MemoryDevice, err error) {
 	dmi, err := dmidecode.New()
 	if err != nil {
 		log.Warn(err)
+		err = nil
 		return
 	}
 	devices, err := dmi.MemoryDevice()
 	if err != nil {
 		log.Warn(err)
+		err = nil
 		return
 	}
 
