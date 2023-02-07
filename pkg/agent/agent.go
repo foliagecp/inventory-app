@@ -5,7 +5,6 @@ package agent
 
 import (
 	"context"
-	systemos "os"
 	"strings"
 
 	"git.fg-tech.ru/listware/go-core/pkg/executor"
@@ -49,9 +48,7 @@ func Run() (err error) {
 	a := &Agent{}
 	a.ctx, a.cancel = context.WithCancel(context.Background())
 
-	kafkaAddr := systemos.Getenv("KAFKA_ADDR")
-
-	if a.executor, err = executor.New(kafkaAddr); err != nil {
+	if a.executor, err = executor.New(); err != nil {
 		return
 	}
 

@@ -2,16 +2,16 @@ module git.fg-tech.ru/listware/inventory-app
 
 go 1.19
 
-replace git.fg-tech.ru/listware/proto => github.com/foliagecp/proto v0.1.0
+replace git.fg-tech.ru/listware/proto => github.com/foliagecp/proto v0.1.3
 
-replace git.fg-tech.ru/listware/cmdb => github.com/foliagecp/cmdb v0.1.2
+replace git.fg-tech.ru/listware/cmdb => github.com/foliagecp/cmdb v0.1.4
 
-replace git.fg-tech.ru/listware/go-core => github.com/foliagecp/go-core v0.1.2
+replace git.fg-tech.ru/listware/go-core => github.com/foliagecp/go-core v0.1.3
 
 require (
-	git.fg-tech.ru/listware/cmdb v0.1.2
-	git.fg-tech.ru/listware/go-core v0.1.2
-	git.fg-tech.ru/listware/proto v0.1.1
+	git.fg-tech.ru/listware/cmdb v0.1.4
+	git.fg-tech.ru/listware/go-core v0.1.3
+	git.fg-tech.ru/listware/proto v0.1.3
 	github.com/shirou/gopsutil v3.21.11+incompatible
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
@@ -26,6 +26,7 @@ require (
 	github.com/apache/flink-statefun/statefun-sdk-go/v3 v3.2.0 // indirect
 	github.com/arangodb/go-driver v1.4.1 // indirect
 	github.com/arangodb/go-velocypack v0.0.0-20200318135517-5af53c29c67e // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/digitalocean/go-smbios v0.0.0-20180907143718-390a4f403a8e // indirect
 	github.com/eapache/go-resiliency v1.3.0 // indirect
@@ -48,10 +49,13 @@ require (
 	github.com/pierrec/lz4/v4 v4.1.17 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/tklauser/go-sysconf v0.3.11 // indirect
 	github.com/tklauser/numcpus v0.6.0 // indirect
+	github.com/urfave/cli/v2 v2.24.3 // indirect
 	github.com/vishvananda/netns v0.0.0-20191106174202-0a2b9b5464df // indirect
+	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/net v0.5.0 // indirect
